@@ -3,6 +3,7 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { useState } from 'react';
 import { Home, MonetizationOn, CurrencyExchange, Feed, Close} from '@mui/icons-material';
 import { Box, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, styled} from '@mui/material'
+import MobileDrawer from '../Components/MobileDrawer';
 
 
 const navlinks = [
@@ -24,6 +25,7 @@ const CustomNavLink = styled(NavLink)(({theme})=>({
 const DefaultLayout = () => {
     const [toogle, setToogle] = useState(true)
     const {pathname} = useLocation()
+
 
   return (
     <div className='bgmod'  style={{}}>
@@ -83,19 +85,14 @@ const DefaultLayout = () => {
         marginLeft={{md:`${toogle ? "6%" : "12%"}`, xs:0}}
         width={{md:`${toogle ? "94%" : "88%"}`, xs:'100%'}}
       >
+      {/* mobile nav */}
       <Paper sx={{width:'100%', bgcolor:'transparent', display:{md:'none', xs:'block'}}} elevation={2}>
-      <Box sx={{ display: "flex" }}>
-          <IconButton
-            size="large"
-            sx={{ pl: "15px" }}
-          >
-            <MenuOpenIcon sx={{ color: "#fff" }} fontSize="large" />
-          </IconButton>
-        </Box>
+        <MobileDrawer/>
       </Paper>
         <Outlet />
       </Box>
     </Box>
+    
     </div>
   );
 }
